@@ -1,19 +1,13 @@
-/**
-* Toy Go implementation of Dining Philosophers problem
-* http://en.wikipedia.org/wiki/Dining_philosophers_problem
-* Author: Doug Fritz
-* Date: 2011-01-05
-**/
 package main
 
 import (
 	"fmt"
+	"log"
 	"math/rand"
 	"os"
 	"strconv"
 	"time"
 )
-
 
 //Philosopher is astructure to store Philosopher details
 type Philosopher struct {
@@ -89,6 +83,9 @@ func (phil *Philosopher) dine(full chan *Philosopher, eatCount chan int, numEat 
 
 func main() {
 
+	if len(os.Args) < 2 {
+		log.Fatalln("Please provide the correct arguments\nUsage: ./exe {max_eat}")
+	}
 	maxEat, _ := strconv.Atoi(os.Args[1])
 
 	names := []string{"Plato", "Aristotle", "Augustine", "Aquinas", "Stein"}
